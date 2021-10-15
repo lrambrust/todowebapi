@@ -14,7 +14,7 @@
 *.userprefs
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+app.db
 
 # Mono auto generated files
 mono_crash.*
