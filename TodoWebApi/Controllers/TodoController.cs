@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infra.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Models.Dtos;
 using System;
 using System.Threading.Tasks;
-using TodoWebApi.Data;
-using TodoWebApi.Services.Interfaces;
-using TodoWebApi.ViewModels;
 
 namespace TodoWebApi.Controllers
 {
@@ -11,9 +10,9 @@ namespace TodoWebApi.Controllers
     [Route("v1")]
     public class TodoController : ControllerBase
     {
-        private readonly ITodosService _todosService;
+        private readonly ITodoService _todosService;
 
-        public TodoController(ITodosService todosService)
+        public TodoController(ITodoService todosService)
         {
             _todosService = todosService;
         }
@@ -41,7 +40,7 @@ namespace TodoWebApi.Controllers
         }
 
         [HttpPost("todos")]
-        public async Task<IActionResult> PostAsync([FromBody] CreateTodoViewModel createTodo)
+        public async Task<IActionResult> PostAsync([FromBody] CreateTodoDto createTodo)
         {
             if (!ModelState.IsValid)
             {
@@ -62,7 +61,7 @@ namespace TodoWebApi.Controllers
         [HttpPut("todos/{id}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] int id,
-            [FromBody] UpdateTodoViewModel updateTodo)
+            [FromBody] UpdateTodoDto updateTodo)
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +89,6 @@ namespace TodoWebApi.Controllers
 
         [HttpDelete("todos/{id}")]
         public async Task<IActionResult> DeleteAsync(
-            [FromServices] AppDbContext context,
             [FromRoute] int id)
         {
             try

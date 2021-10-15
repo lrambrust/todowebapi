@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TodoWebApi.Models
+namespace Models.Entities
 {
     public class Todo
     {

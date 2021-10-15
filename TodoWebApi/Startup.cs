@@ -1,18 +1,11 @@
+using Infra.Data;
+using Infra.Services.Interfaces;
+using Infra.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TodoWebApi.Data;
-using TodoWebApi.Services;
-using TodoWebApi.Services.Interfaces;
 
 namespace TodoWebApi
 {
@@ -56,7 +49,7 @@ namespace TodoWebApi
 
         public void AddScopedServices(IServiceCollection services)
         {
-            services.AddScoped<ITodosService, TodosService>();
+            services.AddScoped<ITodoService, TodoService>();
         }
     }
 }

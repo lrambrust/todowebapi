@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infra.Data;
+using Infra.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Models.Dtos;
+using Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TodoWebApi.Data;
-using TodoWebApi.Models;
-using TodoWebApi.Services.Interfaces;
-using TodoWebApi.ViewModels;
 
-namespace TodoWebApi.Services
+namespace Infra.Services.Services
 {
-    public class TodosService : ITodosService
+    public class TodoService : ITodoService
     {
         private readonly AppDbContext _context;
 
-        public TodosService(AppDbContext context)
+        public TodoService(AppDbContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace TodoWebApi.Services
             return await _context.Todos.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<Todo> CreateTodoAsync(CreateTodoViewModel todo)
+        public async Task<Todo> CreateTodoAsync(CreateTodoDto todo)
         {
             var newTodo = new Todo(todo.Title);
 
@@ -37,7 +37,7 @@ namespace TodoWebApi.Services
             return newTodo;
         }
 
-        public async Task UpdateTodoAsync(UpdateTodoViewModel todoViewModel, int id)
+        public async Task UpdateTodoAsync(UpdateTodoDto todoViewModel, int id)
         {
             var todoToUpdate = await _context.Todos.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
 

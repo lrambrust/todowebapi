@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TodoWebApi.ViewModels
+namespace Models.Dtos
 {
-    public class CreateTodoViewModel
+    public class UpdateTodoDto
     {
         [Required]
         public string Title { get; set; }
+        public bool Done { get; set; }
     }
 }
