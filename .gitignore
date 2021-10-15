@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
 # Mono auto generated files
 mono_crash.*
 
